@@ -1,6 +1,7 @@
 package com.example.kotlin.controller
 
 import com.example.kotlin.model.Account
+import com.example.kotlin.model.ViewAccount
 import com.example.kotlin.service.IAccountService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -21,8 +22,6 @@ class AccountController(private val service: IAccountService) {
     @GetMapping
     fun findAll(): Iterable<Account> = service.findAll()
 
-//    @GetMapping("/{accountNumber}")
-//    fun getBank(@PathVariable accountNumber: String): Bank = service.getBank(accountNumber)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

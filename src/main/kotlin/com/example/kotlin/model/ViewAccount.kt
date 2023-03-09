@@ -4,7 +4,8 @@ data class ViewAccount(
     val id: Long,
     val username: String,
     val password: String,
-    val email: String)
+    val email: String,
+    val bank: String
+    )
 
-fun Account.toView() =
-    ViewAccount(id,username,password,email)
+
