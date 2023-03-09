@@ -1,14 +1,14 @@
 package com.example.kotlin.controller
 
-import com.example.kotlin.model.Bank
-import com.example.kotlin.service.BankService
+import com.example.kotlin.model.Account
+import com.example.kotlin.service.IAccountService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/banks")
-class BankController(private val service: BankService) {
+@RequestMapping("/account")
+class AccountController(private val service: IAccountService) {
 
     @ExceptionHandler(NoSuchElementException::class)
     fun handleNotFound(e: NoSuchElementException): ResponseEntity<String> =
@@ -19,19 +19,19 @@ class BankController(private val service: BankService) {
         ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 
     @GetMapping
-    fun getBanks(): Collection<Bank> = service.getBanks()
+    fun findAll(): Iterable<Account> = service.findAll()
 
-    @GetMapping("/{accountNumber}")
-    fun getBank(@PathVariable accountNumber: String): Bank = service.getBank(accountNumber)
+//    @GetMapping("/{accountNumber}")
+//    fun getBank(@PathVariable accountNumber: String): Bank = service.getBank(accountNumber)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun addBank(@RequestBody bank: Bank): Bank = service.addBank(bank)
+    fun addBank(@RequestBody account: Account): Account = service.createAccount(account)
 
     @PatchMapping
-    fun updateBank(@RequestBody bank: Bank): Bank = service.updateBank(bank)
+    fun updateBank(@RequestBody account: Account): Account = service.editAccount(account)
 
-    @DeleteMapping("/{accountNumber}")
+    @DeleteMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deleteBank(@PathVariable accountNumber: String): Unit = service.deleteBank(accountNumber)
+    fun deleteBank(@RequestBody account: Account): Unit = service.deleteAccount(account)
 }
