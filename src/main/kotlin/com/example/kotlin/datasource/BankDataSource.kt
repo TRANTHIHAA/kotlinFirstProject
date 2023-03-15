@@ -1,6 +1,6 @@
 package com.example.kotlin.datasource
 
-import com.example.kotlin.model.Bank
+import com.example.kotlin.model.entity.Bank
 
 interface BankDataSource {
     fun retrieveBanks(): Collection<Bank>
@@ -12,4 +12,5 @@ interface BankDataSource {
     fun updateBank(bank: Bank): Bank
 
     fun deleteBank(accountNumber: String)
+
 }

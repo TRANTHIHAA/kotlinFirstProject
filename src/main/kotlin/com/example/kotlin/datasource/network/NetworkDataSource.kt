@@ -2,7 +2,7 @@ package com.example.kotlin.datasource.network
 
 import com.example.kotlin.datasource.BankDataSource
 import com.example.kotlin.datasource.network.dto.BankList
-import com.example.kotlin.model.Bank
+import com.example.kotlin.model.entity.Bank
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Repository
@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.client.getForEntity
 import java.io.IOException
 
-@Repository("network")
+@Repository()
 class NetworkDataSource(
     @Autowired private val restTemplate: RestTemplate
 ) : BankDataSource {
@@ -38,4 +38,7 @@ class NetworkDataSource(
     override fun deleteBank(accountNumber: String) {
         TODO("Not yet implemented")
     }
+
+
+
 }
